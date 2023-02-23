@@ -49,7 +49,7 @@ group by 1
 order by 1 ;'''
 
 df1 = pd.read_sql(sql1,con=connector)
-# df2 = pd.read_sql(sql2,con=connector)
+df2 = pd.read_sql(sql2,con=connector)
 
 st.table(df1)
 st.bar_chart(data = df2, x= "DAY", y = "CREDIT_CONSUMPTION")
