@@ -43,18 +43,18 @@ group by account_name,month(current_date())
 order by Account desc;
   ;'''
 
-# sql2 = '''select day(usage_date) as DAY, round(sum(usage_in_currency),2) as CREDIT_CONSUMPTION
-# FROM "SNOWFLAKE"."ORGANIZATION_USAGE"."USAGE_IN_CURRENCY_DAILY"
-# group by 1
-# order by 1 ;'''
+sql2 = '''select day(usage_date) as DAY, round(sum(usage_in_currency),2) as CREDIT_CONSUMPTION
+FROM "SNOWFLAKE"."ORGANIZATION_USAGE"."USAGE_IN_CURRENCY_DAILY"
+group by 1
+order by 1 ;'''
 
 df1 = pd.read_sql(sql1,con=connector)
 # df2 = pd.read_sql(sql2,con=connector)
 
 st.table(df1)
-# st.bar_chart(data = df2, x= "DAY", y = "CREDIT_CONSUMPTION")
+st.bar_chart(data = df2, x= "DAY", y = "CREDIT_CONSUMPTION")
 
-# st.subheader("credit consumption")
-# fig = px.bar(data_frame = df2, x="day", y="credit_consumption",template = "simple_white")
-# fig.update_layout()        
-# st.plotly_chart(fig,use_container_width=True)
+st.subheader("credit consumption")
+fig = px.bar(data_frame = df2, x="day", y="credit_consumption",template = "simple_white")
+fig.update_layout()        
+st.plotly_chart(fig,use_container_width=True)
